@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: elu-metrics
+  namespace: elu
+spec:
+  endpoints:
+  - interval: 3s
+    port: "web"
+  selector:
+    matchLabels:
+      app: elu
+  namespaceSelector: {}

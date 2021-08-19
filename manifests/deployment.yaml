@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: elu
+  name: elu
+  namespace: elu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elu
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: elu
+    spec:
+      containers:
+      - image: elu:latest
+        name: elu
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
