@@ -49,8 +49,7 @@ $ kubectl apply -f manifests/
 
 ## How it works
 
-By default we defined a threshold of 20 to up-/downscale which is related to the average over all percentiles of our ELU metric factorized by 100.
-The prometheus query is defined as '100*avg(event_loop_utilization{service="elu"})'
+By default, we defined a threshold of 20 for up-/downscaleing in [scaledObject.yaml](./manifests/scaledObject.yaml) which is related to the average over all percentiles of our ELU metric, factorized by 100.
 
 ```yaml
 triggers:
@@ -62,7 +61,7 @@ triggers:
       query: 100*avg(event_loop_utilization{service="elu"})
 ```
 
-Ater deployment is done, you open your Grafana via Proxy forwarding and watch your Pod and the ELU metric.
+After deployment is done, you open your Grafana via Proxy forwarding and watch your Pod and the ELU metric.
 
 ```bash
 $ export POD=$(kubectl -n monitoring get pod -l app.kubernetes.io/component=grafana --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
