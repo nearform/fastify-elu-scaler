@@ -36,6 +36,8 @@ We provided an simple nodejs app including a Dockerfile to build an container im
 $ docker build -t elu:latest .
 ```
 
+Make sure your Docker image is accessible from within your Kubernetes cluster.
+
 ## Deploy
 
 To deploy our application and scaler to Kubernetes we prepared some manifest files.
@@ -47,7 +49,18 @@ $ kubectl apply -f manifests/
 
 ## How it works
 
+By default we defined a threshold of 20 to up-/downscale which is related to the average over all percentiles of our ELU metric factorized by 100.
+The prometheus query is defined as '100*avg(event_loop_utilization{service="elu"})'
 
+```yaml
+triggers:
+  - type: prometheus
+    metadata:
+      metricName: event_loop_utilization
+      threshold: '20'
+      serverAddress: "http://prometheus-k8s.monitoring:9090"
+      query: 100*avg(event_loop_utilization{service="elu"})
+```
 
 [kinD]: https://kind.sigs.k8s.io/
 [minikube]: https://minikube.sigs.k8s.io/
