@@ -71,7 +71,7 @@ $ kubectl -n monitoring port-forward $POD 3000:3000
 
 You can now visit [http://localhost:3000/explore] and watch the pod ELU.
 
-To trigger your auto scaler you can use apaches benchmark tool ad
+To trigger your auto scaler you can use apaches benchmark tool [ab]
 
 ```bash
 $ kubectl run -it --rm --image=piegsaj/ab bench -- -c 20000 -n 100000 http://elu.elu:3000
@@ -84,4 +84,5 @@ $ kubectl -n elu get pods --watch
 [Prometheus]: https://prometheus.io/
 [Grafana]: https://grafana.com/
 [Keda]: https://keda.sh/
+[ab]: https://httpd.apache.org/docs/2.4/programs/ab.html
 [http://localhost:3000/explore]: http://localhost:3000/explore?orgId=1&left=%5B%22now-1h%22,%22now%22,%22prometheus%22,%7B%22exemplar%22:true,%22expr%22:%22100*avg(event_loop_utilization%7Bservice%3D%5C%22elu%5C%22%7D)%22%7D%5D
