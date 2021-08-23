@@ -1,1 +1,6 @@
-
+manifests/
+node_modules/
+README.md
+Dockerfile
+.gitignore
+.git
