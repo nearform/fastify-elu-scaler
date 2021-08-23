@@ -49,3 +49,9 @@ $ kubectl apply -f manifests/
 
 
 
+[kinD]: https://kind.sigs.k8s.io/
+[minikube]: https://minikube.sigs.k8s.io/
+[Helm 3]: https://helm.sh/
+[Prometheus]: https://prometheus.io/
+[Grafana]: https://grafana.com/
+[Keda]: https://keda.sh/
