@@ -1,4 +1,4 @@
-apiVersion: keda.k8s.io/v1alpha1
+apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: elu
@@ -9,7 +9,6 @@ spec:
     name: elu
     apiVersion: apps/v1
     kind: Deployment
-    deploymentName: elu
   pollingInterval: 5
   cooldownPeriod: 10
   minReplicaCount: 1
@@ -20,3 +19,7 @@ spec:
         threshold: '20'
         serverAddress: "http://prometheus-k8s.monitoring:9090"
         query: 100*avg(event_loop_utilization{service="elu"})
+    - type: cpu
+      metadata:
+        type: Utilization
+        value: "80"
