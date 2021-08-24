@@ -25,7 +25,7 @@ We want to use Keda to auto scale our Pod
 $ kubectl create namespace keda
 $ helm repo add kedacore https://kedacore.github.io/charts
 $ helm repo update
-$ helm install keda kedacore/keda --version 1.4.2 --namespace keda
+$ helm upgrade -i keda -n keda --create-namespace kedacore/keda
 ```
 
 ## Build
