@@ -14,6 +14,6 @@ module.exports = async function (fastify, opts) {
     options: Object.assign({}, opts)
   })
   
-await fastify.register(require('fastify-nextjs'))
-fastify.next('/')
+  await fastify.register(require('fastify-nextjs'))
+  fastify.next('/')
 }
