@@ -8,6 +8,8 @@ const { setInterval } = require('timers');
 module.exports = fp(async function (fastify, opts) {
 
   let elu1 = eventLoopUtilization();
+  const collectDefaultMetrics = prometheus.collectDefaultMetrics;
+  collectDefaultMetrics();
 
   const metric = new prometheus.Summary({
     name: 'event_loop_utilization',
