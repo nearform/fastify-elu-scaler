@@ -6,8 +6,8 @@ const { eventLoopUtilization } = require('perf_hooks').performance;
 const { setInterval } = require('timers');
 
 module.exports = fp(async function (fastify, opts) {
-
   let elu1 = eventLoopUtilization();
+  
   const collectDefaultMetrics = prometheus.collectDefaultMetrics;
   collectDefaultMetrics();
 
@@ -19,9 +19,13 @@ module.exports = fp(async function (fastify, opts) {
     labelNames: ['idle', 'active', 'utilization'],
   })
 
-  setInterval(() => { 
+  const interval = setInterval(() => { 
     const elu2 = eventLoopUtilization()
     metric.observe(eventLoopUtilization(elu2, elu1).utilization)
     elu1 = elu2 
   }, 100)
+
+  fastify.addHook('onClose', () => {
+    clearInterval(interval)
+  })
 })
