@@ -1,5 +1,7 @@
 # fastify-elu-scaler
 
+> This readonly repository contains sample code accompanying the published blog post [Event Loop Utilization with HPA](https://www.nearform.com/blog/event-loop-utilization-with-hpa/). For demonstration purposes only and not to be used in production.
+
 ## Prerequisites
 
 To deploy this example of an evelt loop utilizer you need already access to an up and running kubernetes cluster. This could be for example [kinD] or [minikube] for testing compose but any cluster is fine.
